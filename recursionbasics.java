@@ -90,8 +90,58 @@ public static int friendspairing(int n){
     }
     return friendspairing(n-1)+(n-1)*friendspairing(n-2);
 }
+public static void occuredat(int arr[],int key,int i ){
+    int len= arr.length;
+    if (i==len){
+        System.out.print(" ");
+        return;
+    }
+    if(arr[i]==key){
+        System.out.print(i+" ");
+    }
+  occuredat(arr, key,i+1);
+}
+static String digits[] ={"zero","one","two","three","four","five","six","seven","eight","nine"};
 
+public static void numtoeng(int n){
+    if (n==0){
+        return;
+    }
+     int lastdigit= n%10;    
+     numtoeng(n/10);
+     System.out.print(digits[lastdigit]+" ");
+    
+}
+public static int lengthofastring(String str){
+    if(str.length()==0){
+        return 0;
+    
+    }
+   return lengthofastring(str.substring(1)) +1;
+}
+public static int countSubstrs(String str,int i,int j,int n) {
+    if(n==1){
+        return 1;
+    }
+    if(n<=0) {
+        return 0;
+    }
+    int res=countSubstrs(str,i+1,j,n-1)+countSubstrs(str,i,j-1,n-1)-countSubstrs(str,i+1,j-1,n-2);
+    if(str.charAt(i) ==str.charAt(j)) {
+        res++ ;
+    }
+    return res;
+}
+public static void towerofHanoi(int n, String src, String helper, String dest) {
+if (n == 1) {
+     System.out.println("transfer disk "+ n + " from "+src+" to "+dest); 
+     return;}
+     towerofHanoi(n-1, src, dest, helper);
+     System.out.println("transfer disk "+ n + " from "+src+" to "+dest);
+     towerofHanoi(n-1, helper, src, dest);
+}
     public static void main (String[] args){
-    System.out.println(friendspairing(3));
+     int n =5;
+     towerofHanoi(n,"S","H","D");
     }
 }
