@@ -111,12 +111,37 @@ private static void mergeSort(String[] arr, int left, int right) {
         System.out.println();
     }
 
+    public static int majorityElement(int[] nums) {
+        int count=1;
+        int maxcount=1; 
+        Arrays.sort(nums);
+        int majorelement=nums[0];
+       
+        for(int i=1;i<nums.length;i++){
+            if(nums[i]==nums[i-1]){
+                count++;           
+            }
+            
+            else{
+                count=1;
+            }     
+        
+          if (count > maxcount) {
+                maxcount = count;
+                majorelement = nums[i];
+            }
+        }
+      return majorelement;
+    }
+
+
     public static void main(String[] args) {
         int arr[]={6,3,9,5,2,8,3,23,475,6,77,9344,46636,544,6,75434,4,6,7,4,754,3,3};
         mergesort(arr, 0, arr.length-1);
         printarr(arr);
         String[] arr1 = { "sun", "earth", "mars", "mercury" };
-
+        int result=majorityElement(arr);
+System.out.println(result);
         System.out.println("Original Array:");
         printArray(arr1);
 
