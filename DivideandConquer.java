@@ -133,6 +133,16 @@ private static void mergeSort(String[] arr, int left, int right) {
         }
       return majorelement;
     }
+    private static int countInRange(int[]nums,int num,int lo,int hi)
+     {
+        int count=0;
+        for(int i=lo;i<=hi;i++) {
+            if(nums[i] ==num) {
+                count++;
+            }}
+            return count;
+        }
+        
 
 
     public static void main(String[] args) {
