@@ -41,7 +41,6 @@ public class OOPS1{
         myAccount.setpassword("oogabooga");
         System.out.println(myAccount.username);
         student s= new student();
-        
 
         
     }
