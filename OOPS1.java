@@ -25,6 +25,9 @@ public class OOPS1{
      static class student {
         String name;
         int roll;
+        public void  setname(){
+            name = "njsnnsn";
+        }
         student(){
          System.out.println("hcvdhjwvh");;
         }
@@ -41,6 +44,9 @@ public class OOPS1{
         myAccount.setpassword("oogabooga");
         System.out.println(myAccount.username);
         student s= new student();
+        s.setname();
+        System.out.println(s.name);
+
 
         
     }
