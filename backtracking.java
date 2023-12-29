@@ -16,7 +16,7 @@ class backtracking{
         }System.out.println();
     }
     public static void main(String[] args) {
-        int arr[]={2,4,5,6,7};
+        int arr[]={2,4,5,7,7,7,5,33,22,6,7};
         int val=0;
         int i=0;
         changearr(arr, i, val);
