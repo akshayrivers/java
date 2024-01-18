@@ -60,3 +60,4 @@ class LinkedList {
         linkedList.print();
     }
 }
+//dont know why is not being pushed
