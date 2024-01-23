@@ -18,11 +18,12 @@ class linkedlist0{
     }
     public static Node head;
     public static Node tail;
-    
+    public static int size;
     //method to add first element into the linked list
     public static void addfirst(int data){
         //step 1: create new node
         Node newNode= new Node(data);
+        size++;
         if(head==null){
             head = newNode;
             tail= head;//set tail to new since its the first element
@@ -36,6 +37,7 @@ class linkedlist0{
     //method to add last element into the linked list
     public static void addlast(int data){
         Node newNode=new Node(data);//step 1 create a new node 
+        size++;
         tail.next =newNode;
         if(head==null){
             head=tail=newNode;
@@ -66,6 +68,7 @@ class linkedlist0{
     public static void add_Nth(int index,int data ){
         Node temp = head;
         Node newNode=new Node(data);
+        size++;
         int i=0;
         while (i<index-1) {
             temp=temp.next;
@@ -75,13 +78,44 @@ class linkedlist0{
         temp.next=newNode;
     } 
     //method to remove the first element
-    public static void removeFirst(){
-
+    public static int removeFirst(){
+        if(size==0){
+            System.out.print("Linkedlist is empty");
+            return Integer.MIN_VALUE;
+        }
+        else if(size ==1){
+            int val= head.data;
+            head=tail=null;
+            size--;
+            return val;
+        }
+        int val =head.data;
+        head=head.next;
+        size--;
+        return val;
     }
 
     //method to remove the last element
-    public static void removeLast(){
-
+    public static int removeLast(){
+        if(size ==0){
+            System.out.print("LinkedList is empty");
+            return Integer.MIN_VALUE;
+        }
+        else if( size ==1){
+            int val= head.data;
+            head=tail= null;
+            return val;
+        }
+        //prev:i = size-2
+        Node prev=head;
+        for(int i =0;i<size-2;i++){
+            prev=prev.next;
+            int val=prev.next.data=tail.data;
+            prev.next=null;
+            size--;
+            return val;
+        }
+        return -1;
     }
 
     //method to reverse the linked list 
@@ -90,8 +124,18 @@ class linkedlist0{
     }
 
     //searching for an element with iterative approach
-    public static boolean iter_search(){
-return true;
+    public static int iter_search(int key){
+        Node temp =head;
+        int i=0;
+        while(temp!=null){
+            if(temp.data==key){
+                return i;
+            }
+            temp=temp.next;
+            i++;
+        }
+        //key not found
+        return -1;
     }
 
     //searching an element with recursive approach
@@ -124,7 +168,14 @@ return true;
         addfirst(0);
         addlast(9);
         addlast(10);
-        add_Nth(2, 8);
+        add_Nth(3, 8);
+        System.out.println("Size of linked list = "+ size);
+        print();
+       //System.out.println( removeFirst());
+        //print();
+        //System.out.println(removeLast());
+        //print();
+        System.out.println(iter_search(10));
         print();
     }
 
