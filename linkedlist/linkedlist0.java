@@ -152,6 +152,8 @@ return true;
     public static void removeNth_node(){
 
     }
+    //atempting to change the users
+    
 
     //checking if the ll contains a cycle
     public static boolean isCycle(){
