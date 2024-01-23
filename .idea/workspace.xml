@@ -2,16 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e03a956-fb95-43ad-b043-d3b0008db1c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/DivideandConquer.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/DivideandConquer.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPS1$BankAccount.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPS1$pen.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPS1$student.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPS1.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/OOPS1.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtracking.class" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/backtracking.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/recursionbasics.java" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/linkedlist/linkedlist0.class" beforeDir="false" afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/linkedlist/linkedlist0.java" beforeDir="false" afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
