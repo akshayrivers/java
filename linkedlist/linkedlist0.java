@@ -118,9 +118,24 @@ class linkedlist0{
         return -1;
     }
 
-    //method to reverse the linked list 
+    //method to reverse the linked list iterative approach
     public static void reverse(){
-
+        /** 
+         * next =curr.next
+         * curr.next=prev
+         * prev=curr
+         * curr=next
+         */
+        Node prev=null;
+        Node curr=tail=head;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        head =prev;
     }
 
     //searching for an element with iterative approach
@@ -139,25 +154,103 @@ class linkedlist0{
     }
 
     //searching an element with recursive approach
-    public static boolean rec_search(){
-return true;
+    public static int  rec_search(int key){
+        return helper(head,key);
+    }
+    public static int helper(Node head,int key){
+        if(head==null){
+            return -1;
+        }
+        if(head.data==key){
+            return 0;
+        }
+        int idx = helper(head.next,key);
+        if(idx==-1){
+            return -1;
+        }
+        return idx+1;
     }
 
+    public static Node findMid(Node head){
+        Node slow = head;
+        Node fast=head;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+        }
+        return slow;
+    }
     //checking if ll is palindrome
     public static boolean isPalindrome(){
-return true;
+        //base case
+        if(head==null||head.next==null){
+            return true;
+        }
+        //Step 1
+        Node midnode=findMid(head);
+        //Step 2
+        Node prev=null;
+        Node curr=midnode;
+        Node next;
+        while(curr!=null){
+            next=curr.next;
+            curr.next=prev;
+            prev=curr;
+            curr=next;
+        }
+        Node right =prev;//right half head
+        Node left=head;
+        //Step 3 
+        while(right!=null){
+            if(left.data!=right.data){
+                return false;
+            }
+            left=left.next;
+            right=right.next;
+        }
+        return true;
     } 
 
-    //removing nth node from ll
-    public static void removeNth_node(){
-
+    //removing nth node from end of the ll
+    public static void removeNth_nodefromend(int n){
+        //calculate size
+        int sz=0;
+        Node temp=head;
+        while(temp!=null){
+            temp=temp.next;
+            sz++;
+        }
+       if(n==sz){
+        reverse();
+        head = head.next;
+        reverse();
+        return;
+       }
+        //size-n
+        int i=1;
+        int itofind=sz-n;
+        Node prev=head;
+        while(i<itofind){
+            prev=prev.next;
+            i++;
+        }
+        prev.next=prev.next.next;
+        return;
     }
-    //atempting to change the users
     
 
     //checking if the ll contains a cycle
     public static boolean isCycle(){
-return true;
+        Node slow=head;
+        Node fast=head;
+        while(fast!=null&&fast.next!=null){
+            slow=slow.next;
+            fast=fast.next.next;
+            if(slow==fast){
+                return true;//cycle exists
+            }
+        }
+        return false;
     }
 
     //method to remove the cycle 
@@ -166,19 +259,26 @@ return true;
     }
     public static void main(String args[]){
         linkedlist0 ll=new linkedlist0();
-        addfirst(1);
-        addfirst(0);
-        addlast(9);
-        addlast(10);
-        add_Nth(3, 8);
+        head=new Node(1);
+        head.next=new Node(2);
+        head.next.next=new Node(3);
+        head.next.next.next=head;
         System.out.println("Size of linked list = "+ size);
-        print();
-       //System.out.println( removeFirst());
-        //print();
-        //System.out.println(removeLast());
-        //print();
+        System.out.println(isCycle());
+        
+       /**System.out.println( removeFirst());
+        **System.out.println(removeLast());
+        print();System.out.println(isPalindrome());
         System.out.println(iter_search(10));
         print();
+        System.out.print(rec_search(9));
+        reverse();
+        print();
+        removeNth_nodefromend(3);
+        print();
+        System.out.println(size);*/
+
+
     }
 
 }
