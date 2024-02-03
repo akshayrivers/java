@@ -278,7 +278,7 @@ class linkedlist0{
         print();
         System.out.println(size);*/
 
-
+// adding somethingb 
     }
 
 }
