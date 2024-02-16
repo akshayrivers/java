@@ -1,3 +1,4 @@
+package Stack;
 import java.util.*;
 class stack {
     /**
@@ -80,6 +81,7 @@ class stack {
         s.push(2);
         s.push(3);
         s.push(6);
+
         while(!s.isEmpty()){
             System.out.print(s.peek()+"  ");
             s.pop();
