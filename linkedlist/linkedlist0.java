@@ -355,19 +355,17 @@ class linkedlist0{
         // System.out.println(isCycle());
         // print();
         // System.out.println(size);
-       /**System.out.println( removeFirst());
-        **System.out.println(removeLast());
-        print();System.out.println(isPalindrome());
-        System.out.println(iter_search(10));
-        print();
-        System.out.print(rec_search(9));
-        reverse();
-        print();
-        removeNth_nodefromend(3);
-        print();
-        System.out.println(size);*/
-
-// adding somethingb 
+        // System.out.println( removeFirst());
+        // **System.out.println(removeLast());
+        // print();System.out.println(isPalindrome());
+        // System.out.println(iter_search(10));
+        // print();
+        // System.out.print(rec_search(9));
+        // reverse();
+        // print();
+        // removeNth_nodefromend(3);
+        // print();
+        // System.out.println(size);
     }
 
 }

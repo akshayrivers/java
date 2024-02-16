@@ -1,1 +1,1 @@
-<p>i have made this repo for my java codebase<p>
+<p> I have made this repository to keep track of my dsa in java and learning java <p>
