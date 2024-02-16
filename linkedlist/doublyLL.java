@@ -41,7 +41,7 @@ public class doublyLL {
         size++;
     }
     public void Print(){
-        if( head!=null&&tail!=null){
+        if( head==null){
             System.out.println("ll is empty");
         }
         Node temp=head;
@@ -54,12 +54,49 @@ public class doublyLL {
         }
         System.out.println();
     }
+    public int RemoveFirst(){
+        if(size==0){
+            System.out.println("dll is empty");
+            return Integer.MIN_VALUE;
+        }
+        if(size==1){
+            int val=head.data;
+            head=tail=null;
+            size--;
+        }
+        int val=head.data;
+        head=head.next;
+        head.prev=null;
+        size--;
+        return val;
+    }
+    public static void Reverse() {
+        Node curr = head;
+        Node prev = null;
+        Node next;
+        
+        // Travel the list and reverse the pointers
+        while (curr != null) {
+            next = curr.next;
+            curr.next = curr.prev; // Reverse next and prev pointers
+            curr.prev = next;
+            prev = curr;
+            curr = next;
+        }
+        
+        // Update head and tail pointers
+        tail = head;
+        head = prev;
+    }
+    
     public static void main(String[] args) {
         doublyLL dll=new doublyLL();
         dll.Addfirst(2);
         dll.Addlast(8);
         dll.Addfirst(9);
         dll.Addlast(5);
+        dll.Print();
+        dll.Reverse();
         dll.Print();
 
     }
