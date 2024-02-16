@@ -2,11 +2,6 @@ class linkedlist0{
     static class Node{
         public int data;
         public Node next;
-
-        Node(){
-            this.data=0;
-            this.next=null;
-        }
         Node(int data){
             this.data=data;
             this.next=null;
@@ -253,19 +248,52 @@ class linkedlist0{
         return false;
     }
 
-    //method to remove the cycle 
-    public static void removeCycle(){
+//method to remove cycle
+    public static void removeCycle() {
+        Node slow = head;
+        Node fast = head;
 
+        // Cycle detection
+        while (fast != null && fast.next != null) {
+            slow = slow.next;
+            fast = fast.next.next;
+            if (slow == fast) {
+                break; // cycle detected
+            }
+        }
+
+        // No cycle found
+        if (slow != fast) {
+            System.out.println("No cycle found in the list.");
+            return;
+        }
+
+        // Finding the node before the cycle
+        slow = head;
+        while (slow.next != fast.next) {
+            slow = slow.next;
+            fast = fast.next;
+        }
+
+        // Removing the cycle
+        fast.next = null;
+        System.out.println("Cycle removed from the list.");
     }
+
+    
     public static void main(String args[]){
         linkedlist0 ll=new linkedlist0();
         head=new Node(1);
         head.next=new Node(2);
         head.next.next=new Node(3);
-        head.next.next.next=head;
+        head.next.next.next=new Node(5);
+        head.next.next.next.next=head.next.next;
         System.out.println("Size of linked list = "+ size);
         System.out.println(isCycle());
-        
+        removeCycle();
+        System.out.println(isCycle());
+        print();
+        System.out.println(size);
        /**System.out.println( removeFirst());
         **System.out.println(removeLast());
         print();System.out.println(isPalindrome());
