@@ -41,24 +41,24 @@ class stack {
             // public static int peek(){
             //     return list.get(list.size()-1);
             // }
-                static ArrayList<Integer> list=new ArrayList<>();
-                public static boolean isEmpty(){
-                    return list.size()==0;
-                }
-                //push
-                public static void push(int data){
-                    list.add(data);
-                }
-                //pop
-                public static int pop(){
-                    int top=list.get(list.size()-1);
-                    list.remove(list.size()-1);
-                    return top;
-                }
-                //peek
-                public static int peek(){
-                    return list.get(list.size()-1);
-                }
+                // static ArrayList<Integer> list=new ArrayList<>();
+                // public static boolean isEmpty(){
+                //     return list.size()==0;
+                // }
+                // //push
+                // public static void push(int data){
+                //     list.add(data);
+                // }
+                // //pop
+                // public static int pop(){
+                //     int top=list.get(list.size()-1);
+                //     list.remove(list.size()-1);
+                //     return top;
+                // }
+                // //peek
+                // public static int peek(){
+                //     return list.get(list.size()-1);
+                // }
             // //Stack using linkedlist
             //     static Node head = null;
             //     public static boolean isEmpty(){
@@ -93,18 +93,60 @@ class stack {
          
         }
     
+        public static void PushAtBottom(Stack<Integer> s, int data ){
+            if(s.empty()){
+                s.push(data);
+                return;
+            }
+            int top = s.pop();
+            PushAtBottom(s,data);
+            s.push(top);
+        }
      
+        // reverse a string using stack 
+        public static String  reverseString(String str ){
+            Stack<Character> s= new Stack<>();
+            int idx=0;
+            while(idx<str.length()){
+                s.push(str.charAt(idx));
+                idx++;
+            }
+            StringBuilder result =new StringBuilder(" ");
+            while(!s.empty()){
+                char curr =s.pop();
+                result.append(curr);
+            }
+            return str=result.toString();
+        }
+
+        // reverse a stack TC-> O(n) SC->O(1) by using recursion
+        public static void reverseStack(Stack<Integer>s){
+            if(s.empty()){
+                return;
+            }
+            int top=s.pop();
+            reverseStack(s);
+            PushAtBottom(s,top);
+        }
+        public static void printStack(Stack<Integer>s){
+            while(!s.empty()){
+                System.out.print(s.pop()+" ");
+            }
+        }
     public static void main(String[] args) {
-        stack0 s = new stack0();
+        Stack<Integer> s= new Stack();
         s.push(1);
         s.push(2);
         s.push(3);
         s.push(6);
+        PushAtBottom(s,7);
+        printStack(s);
+        reverseStack(s);
+        printStack(s);
+        System.out.println();
+        String str = "VINOD AKSHAT";
+        System.out.println(reverseString(str));
 
-        while(!s.isEmpty()){
-            System.out.print(s.peek()+"  ");
-            s.pop();
-        }
     
     }
 }
