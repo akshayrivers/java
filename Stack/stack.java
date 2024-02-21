@@ -1,4 +1,4 @@
-package Stack;
+
 import java.util.*;
 class stack {
     /**
@@ -41,39 +41,58 @@ class stack {
             // public static int peek(){
             //     return list.get(list.size()-1);
             // }
-
-            //Stack using linkedlist
-                static Node head = null;
+                static ArrayList<Integer> list=new ArrayList<>();
                 public static boolean isEmpty(){
-                    return head==null;
+                    return list.size()==0;
                 }
                 //push
                 public static void push(int data){
-                    Node newNode=new Node(data);
-                    if(isEmpty()){
-                        head=newNode;
-                        return;
-                    }
-                    newNode.next = head;
-                    head=newNode;
+                    list.add(data);
                 }
                 //pop
                 public static int pop(){
-                    if(isEmpty()){
-                        return-1;
-                    }
-                    int top=head.data;
-                    head=head.next;
+                    int top=list.get(list.size()-1);
+                    list.remove(list.size()-1);
                     return top;
                 }
                 //peek
                 public static int peek(){
-                    if(isEmpty()){
-                        return -1;
-                    }
-                    return head.data;
+                    return list.get(list.size()-1);
                 }
+            // //Stack using linkedlist
+            //     static Node head = null;
+            //     public static boolean isEmpty(){
+            //         return head==null;
+            //     }
+            //     //push
+            //     public static void push(int data){
+            //         Node newNode=new Node(data);
+            //         if(isEmpty()){
+            //             head=newNode;
+            //             return;
+            //         }
+            //         newNode.next = head;
+            //         head=newNode;
+            //     }
+            //     //pop
+            //     public static int pop(){
+            //         if(isEmpty()){
+            //             return-1;
+            //         }
+            //         int top=head.data;
+            //         head=head.next;
+            //         return top;
+            //     }
+            //     //peek
+            //     public static int peek(){
+            //         if(isEmpty()){
+            //             return -1;
+            //         }
+            //         return head.data;
+            //     }
+         
         }
+    
      
     public static void main(String[] args) {
         stack0 s = new stack0();
@@ -87,5 +106,5 @@ class stack {
             s.pop();
         }
     
-}
+    }
 }
