@@ -337,7 +337,7 @@ class linkedlist0{
     }
     
     public static void main(String args[]){
-        linkedlist0 ll=new linkedlist0();
+        linkedlist0 ll =new linkedlist0();
         head=new Node(1);
         head.next=new Node(2);
         head.next.next=new Node(3);
