@@ -109,11 +109,56 @@ public class binarytrees {
             }
         }    
     }
+    /**
+     * 
+     * @param args
+     * height of a tree  
+     * it is the maximum distance between root and a leaf 
+     * eg:
+     *     1       <-1
+     *   2   3     <-2
+     * 4   5   6   <-3
+     * 
+     *  height of this given tree is 3
+    */ 
+    public static int height(Node root){
+        if(root==null){
+            return 0;
+        }
+        int lh=height(root.left);
+        int rh=height(root.right);
+        return Math.max(lh, rh)+1;
+    }
+    /*
+     * count of nodes => no.of nodes
+     */
+    public static int Count(Node root ){
+        if(root==null){
+            return 0;
+        }
+        int lcount =Count(root.left);
+        int rcount =Count(root.right);
+        int treecount= lcount+rcount+1 ;
+        return treecount;
+    }
+    // Sum of nodes 
+    public static int Sum(Node root){
+        if(root==null){
+            return 0;
+        }
+        int leftSum = Sum(root.left);
+        int rightSum= Sum(root.right);
+        int treesum = leftSum+rightSum+root.data;
+        return treesum;
+    }
     public static void main(String[] args) {
         int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         BinaryTree tree= new BinaryTree();
         Node root= tree.buildTree(nodes);
         System.out.println(root.data);
         LevelOrder(root);
+        System.out.println(height(root));
+        System.out.println("Count of Nodes = "+ Count(root));
+        System.out.println("sum of all nodes = "+ Sum(root));
     }
 }
