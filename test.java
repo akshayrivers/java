@@ -11,13 +11,10 @@ public class test {
         }
     }
     public static void main(String args[]){
-        System.out.print("joke");
-       if(System.out.append("hello")==null){
-        System.out.println("hello");
-       }
-       else{
-        System.out.println("world");
-       }
-    }
+      int arr[]={1,2,3,4,5};
+      int i =0;
+      System.out.println(arr[i++]);
+      System.out.println(arr[++i]);
 
-} 
+    } 
+}

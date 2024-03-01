@@ -151,6 +151,51 @@ public class binarytrees {
         int treesum = leftSum+rightSum+root.data;
         return treesum;
     }
+
+    /*
+    
+     Diameter of a binary tree
+     No.of nodes in the longest path between 2 leaves
+     Approach 1 TC->O(n2)
+     if diameter passes through root 
+     root diam = lh+rh+1;
+     if diameter doesn't pass through root
+     l diam, r diam 
+    
+    */
+    public static  int diameter(Node root){
+        if(root==null){
+            return 0;
+        }
+        int leftDiam = diameter(root.left);
+        int leftHt=height(root.left);
+        int rightDiam= diameter(root.right);
+        int rightHt= height(root.right);
+        int self=leftHt+rightHt+1;
+        return Math.max(Math.max(rightDiam, rightHt),self);
+    }
+    /*
+     * Approach 2 TC-> O(n)
+     * 
+     */
+    static class Info{
+        int diam;
+        int ht;
+        public  Info(int diam,int ht ){
+            this.diam=diam;
+            this.ht=ht;
+        }
+    }
+    public static Info Diameter(Node root){
+        if(root==null){
+            return new Info(0, 0);
+        }
+        Info leftInfo=Diameter(root.left);
+        Info rightInfo=Diameter(root.right);
+        int diam = Math.max(Math.max(leftInfo.diam,rightInfo.diam),leftInfo.ht+rightInfo.ht+1);
+        int ht= Math.max(leftInfo.ht,rightInfo.ht)+1;
+        return new Info(diam ,ht);
+    }
     public static void main(String[] args) {
         int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
         BinaryTree tree= new BinaryTree();
@@ -160,5 +205,7 @@ public class binarytrees {
         System.out.println(height(root));
         System.out.println("Count of Nodes = "+ Count(root));
         System.out.println("sum of all nodes = "+ Sum(root));
+        System.out.println("height of tree = "+ height(root));
+        System.out.println("diameter of tree = "+ Diameter(root).diam );
     }
 }
