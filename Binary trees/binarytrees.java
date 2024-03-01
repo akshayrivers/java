@@ -18,17 +18,17 @@ public class binarytrees {
     }
     static class BinaryTree{
         static int idx=-1;
-        public static Node buildTree(int nodes[]){
-            idx++;
-            if(nodes[idx]==-1){
+        public static Node buildTree(int nodes[], int[] idx) {
+            idx[0]++;
+            if (idx[0] >= nodes.length || nodes[idx[0]] == -1) {
                 return null;
             }
-            Node newNode=new Node(nodes[idx]);
-            newNode.left=buildTree(nodes);
-            newNode.right=buildTree(nodes);
-
+            Node newNode = new Node(nodes[idx[0]]);
+            newNode.left = buildTree(nodes, idx);
+            newNode.right = buildTree(nodes, idx);
             return newNode;
         }
+        
     }/* Tree Traversals 
         A. Preorder
             1)root
@@ -196,16 +196,52 @@ public class binarytrees {
         int ht= Math.max(leftInfo.ht,rightInfo.ht)+1;
         return new Info(diam ,ht);
     }
+
+    /*checking if the given tree is subtree of another 
+        Given the roots of two binary trees and subroot , 
+        return true if there is a subtree of root with the same structure and node values of subroot and false otherwise
+
+        1. find subtree
+        2. check identical(subtree, node subtree)
+        traversal=> root.data == subroot.data
+    */ 
+    public static boolean isIdentical(Node p,Node q){
+        if (p == null && q == null) {
+            return true;
+        }
+        if (p == null || q == null || p.data != q.data) {
+            return false;
+        }
+        return isIdentical(p.left, q.left) && isIdentical(p.right, q.right);
+    }
+    public static boolean isSubtree(Node root, Node subroot) {
+        if (root == null ) {
+            return false;
+        }
+        if (root.data == subroot.data) {
+            if (isIdentical(root, subroot)) {
+                return true;
+            }
+        }
+        return isSubtree(root.left, subroot) || isSubtree(root.right, subroot);
+    }
     public static void main(String[] args) {
-        int nodes[]={1,2,4,-1,-1,5,-1,-1,3,-1,6,-1,-1};
-        BinaryTree tree= new BinaryTree();
-        Node root= tree.buildTree(nodes);
+        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        BinaryTree tree = new BinaryTree();
+        Node root = tree.buildTree(nodes, new int[]{-1});
         System.out.println(root.data);
         LevelOrder(root);
-        System.out.println(height(root));
-        System.out.println("Count of Nodes = "+ Count(root));
-        System.out.println("sum of all nodes = "+ Sum(root));
-        System.out.println("height of tree = "+ height(root));
-        System.out.println("diameter of tree = "+ Diameter(root).diam );
-    }
+        int nodes1[] = {2, 4, -1, -1, 5, -1, -1};
+        BinaryTree subtree = new BinaryTree();
+        Node subroot = subtree.buildTree(nodes1, new int[]{-1});
+        LevelOrder(subroot);
+    
+        System.out.println( isSubtree(root, subroot));
+        }
+    
+    
 }
+    
+    
+    
+
