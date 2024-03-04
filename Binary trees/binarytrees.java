@@ -1,3 +1,4 @@
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.Queue;
 
@@ -18,14 +19,14 @@ public class binarytrees {
     }
     static class BinaryTree{
         static int idx=-1;
-        public static Node buildTree(int nodes[], int[] idx) {
-            idx[0]++;
-            if (idx[0] >= nodes.length || nodes[idx[0]] == -1) {
+        public static Node buildTree(int nodes[]) {
+            idx++;
+            if (nodes[idx] == -1) {
                 return null;
             }
-            Node newNode = new Node(nodes[idx[0]]);
-            newNode.left = buildTree(nodes, idx);
-            newNode.right = buildTree(nodes, idx);
+            Node newNode = new Node(nodes[idx]);
+            newNode.left = buildTree(nodes);
+            newNode.right = buildTree(nodes);
             return newNode;
         }
         
@@ -225,18 +226,122 @@ public class binarytrees {
         }
         return isSubtree(root.left, subroot) || isSubtree(root.right, subroot);
     }
+    /*
+     *Top view of a tree
+     * Hashmap in java\
+     * import.java.util*;
+     * HashMap<String, Integer > map=new HashMap<>();
+     * add-> map.put(key,value); O(1)
+     * remove->O(1)
+     * get-> map.get(key);->O(1)
+     * Horizontal distance
+     *  
+     *  1. we make a info class which includes node and its horizontal diatance
+     *  2. initialise a hashmap, queue, int min an max to measure the edges of horizontal distance
+     *  3. then we will use level order traversal and keep on adding the new nodes into the hashmap if their hd has not occured before
+     *  NOTE: in bottom view of tree we will update the value of hd(key) in the hash map 
+     *  4. print the values from hasmap 
+     * 
+     */
+    public static void BottomView(Node root){
+        Queue<Infofortopview> q= new LinkedList<>();
+        HashMap<Integer, Node> map= new HashMap<>();
+        int min=0;
+        int max=0;
+        q.add(new Infofortopview(root, 0));
+        q.add(null);
+        while(!q.isEmpty()){
+            Infofortopview curr= q.remove();
+            if(curr==null){
+                if(!q.isEmpty()){
+                    q.add(null);
+                }else{
+                    break;
+                }
+            }else{
+                if(!map.containsKey(curr.hd)){
+                    map.put(curr.hd, curr.node);
+                }
+                if (map.containsKey(curr.hd)) {
+                    map.put(curr.hd, curr.node);
+                }
+                if(curr.node.left!=null){
+                    q.add(new Infofortopview(curr.node.left, curr.hd-1));
+                    min= Math.min(min, curr.hd-1);
+                }
+                if(curr.node.right!=null){
+                    q.add(new Infofortopview(curr.node.right, curr.hd+1));
+                    max= Math.max(max, curr.hd+1);
+                }
+            }
+        }
+        for (int i = min; i <=max; i++) {        
+            System.out.print(map.get(i).data+"  ");
+        }
+        System.out.println();
+
+    }
+     // info class made for keeping track of horixontal distance and nodes
+    static class Infofortopview{
+        Node node;
+        int hd;
+
+        public Infofortopview(Node node,int hd){
+        this.node=node;
+        this.hd=hd;
+    }
+}
+    public static void TopView(Node root){
+        // level order
+        Queue<Infofortopview>q= new LinkedList<>();
+        HashMap<Integer,Node> map=new HashMap<>();
+        int min =0;
+        int max=0;
+        q.add(new Infofortopview(root, 0));
+        q.add(null);
+        while (!q.isEmpty()) {
+            Infofortopview curr= q.remove();
+            if (curr==null) {
+                if (!q.isEmpty()) {
+                    q.add(null);
+                }else{
+                    break;
+                }
+            }else{
+            if (!map.containsKey(curr.hd)) {
+                //first time hd is occuring 
+                map.put(curr.hd, curr.node);
+
+            }
+            if(curr.node.left!= null){
+                q.add(new Infofortopview(curr.node.left, curr.hd-1));
+                min =Math.min(min, curr.hd-1);
+            }
+            if (curr.node.right!=null) {
+                q.add(new Infofortopview(curr.node.right, curr.hd+1));
+                max= Math.max(max, curr.hd+1);
+            }
+        }
+    }
+        for (int i = min; i <=max; i++) {        
+            System.out.print(map.get(i).data+"  ");
+        }
+        System.out.println();
+    }
     public static void main(String[] args) {
-        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, -1, -1};
+        int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, 9, -1,-1,8,-1,-1};
         BinaryTree tree = new BinaryTree();
-        Node root = tree.buildTree(nodes, new int[]{-1});
-        System.out.println(root.data);
+        Node root = tree.buildTree(nodes);
+        //System.out.println(root.data);
+        //LevelOrder(root);
+        // int nodes1[] = {2, 4, -1, -1, 5, -1, -1};
+        // BinaryTree subtree = new BinaryTree();
+        // Node subroot = subtree.buildTree(nodes1, new int[]{-1});
+        // LevelOrder(subroot);
         LevelOrder(root);
-        int nodes1[] = {2, 4, -1, -1, 5, -1, -1};
-        BinaryTree subtree = new BinaryTree();
-        Node subroot = subtree.buildTree(nodes1, new int[]{-1});
-        LevelOrder(subroot);
-    
-        System.out.println( isSubtree(root, subroot));
+        System.out.println("root = "+ root.data);
+        TopView(root);
+        BottomView(root);
         }
     
     

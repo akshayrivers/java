@@ -2,8 +2,11 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="9e03a956-fb95-43ad-b043-d3b0008db1c8" name="Changes" comment="">
-      <change beforePath="$PROJECT_DIR$/linkedlist/linkedlist0.class" beforeDir="false" afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.class" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/linkedlist/linkedlist0.java" beforeDir="false" afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.java" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linkedlist/LinkedList$Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linkedlist/LinkedList.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linkedlist/linkedlist0$Node.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.class" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/linkedlist/linkedlist0.java" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -14,7 +17,7 @@
     <option name="done" value="true" />
   </component>
   <component name="Git.Settings">
-    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+    <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$/linkedlist" />
   </component>
   <component name="MarkdownSettingsMigration">
     <option name="stateVersion" value="1" />
@@ -23,6 +26,7 @@
     <option name="version" value="2" />
   </component>
   <component name="ProjectId" id="2b7gNhZEKjW3a5UUQkA08AzIo8N" />
+  <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectViewState">
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
