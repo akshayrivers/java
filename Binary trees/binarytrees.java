@@ -408,7 +408,88 @@ public class binarytrees {
         }
         return root;
     }
+    /*
+     * Minimum distance b/w nodes
+     * approach:
+     * 1. dist1 -> lca to n1
+     * 2.dist2-> lca to n2
+     * dist1 + dist 2= min.dist b/W n1 and n2
+     * 
+     *      
+    */
+    public static int minDist(Node root, int n1, int n2){
+        Node lca= lca2(root, n1, n2);
+        int dist1= lcaDist(lca,n1);
+        int dist2= lcaDist(lca,n2);
+        return dist1+dist2;
+    }
+    public static int lcaDist(Node root,int n){
+        if (root==null) {
+            return -1;
+        }
+        if (root.data==n) {
+            return 0;
+        }
+        int leftDist=lcaDist(root.left, n);
+        int rightDist=lcaDist(root.right, n);
 
+        if (leftDist==-1&&rightDist==-1) {
+            return -1;
+        }
+        else if(leftDist==-1){
+            return rightDist+1;
+        }
+        else{
+            return leftDist+1;
+        }
+    }
+    /*
+     * Kth Ancestor of node 
+     * 1. find my node
+     * 2.if(root.data==node) return 0;
+     * leftdist and rightdist
+     * -1 , -1-> -1
+     * valid value->(dist+1)==k
+     * print root.data
+     */
+    public static int KthAncestor(Node root, int n , int k){
+        if(root==null){
+            return -1;
+        }
+        if (root.data==n) {
+            return 0;
+        }
+        int leftDist=KthAncestor(root.left, n, k);
+        int rightDist=KthAncestor(root.right, n, k);
+
+        if (leftDist==-1&&rightDist==-1) {
+            return -1;
+        }
+        int max= Math.max(leftDist, rightDist);
+        if (max+1==k) {
+            System.out.println(root.data);
+        }
+        return max+1;
+    }
+    /*
+     * transforming the binary tree to a sum tree 
+     * if root=null return 0;
+     * leftchildsum=
+     * rightchildsum=
+     * data = root.data
+     * root.data= Lsum+Rsum 
+     * return data
+     */
+    public static int SumTree(Node root){
+        if (root==null) {
+            return 0;
+        }
+        int  leftchildsum=SumTree(root.left);
+        int rightchildsum=SumTree(root.right);
+        int data= root.data;
+        root.data= leftchildsum+rightchildsum;
+        return data;
+    }
 
     public static void main(String[] args) {
         int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, 9, -1,-1,8,-1,-1};
@@ -427,7 +508,13 @@ public class binarytrees {
         Kthlevel(root, 0, 3);
         System.out.println();
         System.out.println("lca of n1 and n2 = "+ lca2(root,2,9).data);
-        
+        System.out.println("minimum distance between two nodes = " + minDist(root, 2, 9));
+        System.out.print("Kth ancestor of a node = ");
+        KthAncestor(root, 9 ,1);
+        System.out.println();
+        LevelOrder(root);
+        SumTree(root);
+        LevelOrder(root);
         }
     
     
