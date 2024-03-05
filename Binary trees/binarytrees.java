@@ -350,7 +350,10 @@ public class binarytrees {
 
     Approach 2:
         lca = Ist parent(Ancestor) -> subtree n1&n2
+        isme hamne traverrse krke tree pr ek aisa node dundha jikse subtree main dono elements lie krte ho.
     */ 
+
+    //approach 1:
     public static boolean getpath(Node root, int n,  ArrayList<Node> path){
         if (root==null) {
             return false;
@@ -386,6 +389,27 @@ public class binarytrees {
         System.out.println(lca.data);
 
     }
+    //approach 2
+    public static Node lca2(Node root, int n1, int n2){
+        if (root==null) {
+            return null;
+        }
+        if (root.data==n1||root.data==n2) {
+            return root;
+        }
+        Node leftlca= lca2(root.left, n1, n2);
+        Node rightlca=lca2(root.right, n1, n2);
+        //leftlca= val rightlca=null
+        if(rightlca==null){
+            return leftlca;
+        }
+        if (leftlca==null) {
+            return rightlca;
+        }
+        return root;
+    }
+
+
     public static void main(String[] args) {
         int nodes[] = {1, 2, 4, -1, -1, 5, -1, -1, 3, -1, 6, 9, -1,-1,8,-1,-1};
         BinaryTree tree = new BinaryTree();
@@ -401,8 +425,9 @@ public class binarytrees {
         TopView(root);
         BottomView(root);
         Kthlevel(root, 0, 3);
-        System.out.println("lca of 6 and 9 = ");
-        lca(root,2,5);
+        System.out.println();
+        System.out.println("lca of n1 and n2 = "+ lca2(root,2,9).data);
+        
         }
     
     
