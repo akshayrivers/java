@@ -108,6 +108,46 @@ public class BinarySearchTrees {
         }
         return root;
     }
+    // print in range
+    public static void PrintInRange(Node root, int k1, int k2) {
+        if (root == null) {
+            return;
+        }
+        
+        //  Case 1 -> Traverse left subtree if root's data is greater than k1
+        if (root.data > k1) {
+            PrintInRange(root.left, k1, k2);
+        }
+    
+        // Case 2 -> If root's data lies in the range, print it
+        if (root.data >= k1 && root.data <= k2) {
+            System.out.print(root.data + " ");
+        }
+    
+        // Case 3 -> Traverse right subtree if root's data is less than k2
+        if (root.data < k2) {
+            PrintInRange(root.right, k1, k2);
+        }
+    }
+    // root to leaf paths 
+    public static void PrintRoot2leaf(Node root, ArrayList<Integer> path){
+        if (root==null) {
+            return ;
+        }
+        path.add(root.data);
+        if (root.left==null&&root.right==null) {
+            PrintPath(path);
+        }
+        
+        PrintRoot2leaf(root.left, path);
+        PrintRoot2leaf(root.right, path);
+        path.remove(path.size()-1);
+    }
+    public static void PrintPath(ArrayList<Integer> path){
+        for (int i = 0; i < path.size(); i++) {
+            System.out.print(path.get(i)+"->");
+        }System.out.println("null");
+    }
     public static void main(String[] args) {
         int values[]={5,2,3,4,1,7};
         Node root= null;
@@ -120,5 +160,8 @@ public class BinarySearchTrees {
         delNode(root, 2);
         System.out.println(search(root, 2));
         Inorder(root);
+        System.out.println();
+        ArrayList<Integer> path = new ArrayList<>();
+        PrintRoot2leaf(root, path);
     }
 }
