@@ -108,6 +108,12 @@ public class BinarySearchTrees {
         }
         return root;
     }
+    public static Node Inorderpredecessor(Node root){
+        while(root.right!=null){
+            root=root.right;
+        }
+        return root;
+    }
     // print in range
     public static void PrintInRange(Node root, int k1, int k2) {
         if (root == null) {
@@ -148,6 +154,33 @@ public class BinarySearchTrees {
             System.out.print(path.get(i)+"->");
         }System.out.println("null");
     }
+    /*/validate a BST  
+    approach 1 is  just compare the left and right for each of them 
+    approach 2 suggests to Check if the max value in left subtree is smaller than root and min value in right subtree is greater than the root node 
+    */
+    public static boolean ValidateBST(Node root,Node min, Node max ){
+        if (root==null) {
+            return true;
+        }
+        if (min!=null&&root.data<=min.data) {
+            return false;
+        }
+        else if (max!=null&&root.data>=max.data) {
+            return false;
+        }
+        // return ValidateBST(root, min, max)&& ValidateBST(root.right, min, max);
+        return true;
+    }
+    public static Node Mirror(Node root){
+        if (root==null) {
+            return null;
+        }
+        Node leftS=Mirror(root.left);
+        Node rightS=Mirror(root.right);
+        root.left=rightS;
+        root.right=leftS;
+        return root;
+    }
     public static void main(String[] args) {
         int values[]={5,2,3,4,1,7};
         Node root= null;
@@ -156,12 +189,20 @@ public class BinarySearchTrees {
         }
         Inorder(root);
         System.out.println();
-        System.out.println(search(root, 2));
-        delNode(root, 2);
-        System.out.println(search(root, 2));
+        // System.out.println(search(root, 2));
+        // delNode(root, 2);
+        // System.out.println(search(root, 2));
+        // Inorder(root);
+        // System.out.println();
+        // ArrayList<Integer> path = new ArrayList<>();
+        // PrintRoot2leaf(root, path);
+        // Node min= Inordersuccessor(root);
+        // Node max = Inorderpredecessor(root);
+        // System.out.println(ValidateBST(root, min, max));
         Inorder(root);
         System.out.println();
-        ArrayList<Integer> path = new ArrayList<>();
-        PrintRoot2leaf(root, path);
+        Mirror(root);
+        System.out.println();
+        Inorder(root);
     }
 }
