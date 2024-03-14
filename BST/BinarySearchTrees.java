@@ -172,14 +172,48 @@ public class BinarySearchTrees {
         return true;
     }
     public static Node Mirror(Node root){
+        //base case
         if (root==null) {
             return null;
         }
-        Node leftS=Mirror(root.left);
-        Node rightS=Mirror(root.right);
+        //using recursion
+        Node leftS=Mirror(root.left);//storing the value of the left Node in leftS
+        Node rightS=Mirror(root.right);//storing the value of the right Node in rightS
+        //swapping the values
         root.left=rightS;
         root.right=leftS;
         return root;
+    }
+    /*
+     sorted array to BST 
+    the logic here is to make the middle node the root node to make a balanced BST 
+     */
+    public static Node CreateBST(ArrayList<Integer> arr , int start , int end){
+        if (start> end) {
+            return null;
+        }
+        int mid= (start+end)/2;
+        Node root1=new Node(arr.get(mid));
+        root1.left=CreateBST(arr, start, mid-1);
+        root1.right=CreateBST(arr, mid+1, end);
+        return root1;
+    }
+    // convert BST to Balanced BST 
+    public static void getInOrder(Node root,ArrayList<Integer> inorder){
+        if (root==null) {
+            return;
+        }
+        getInOrder(root.left, inorder);
+        inorder.add(root.data);
+        getInOrder(root.right, inorder);
+    }
+    public static Node balanceBST(Node root){
+        //inorder seq->O(n)
+        ArrayList<Integer>inorder= new ArrayList<>();
+        getInOrder(root,inorder);
+        root= CreateBST(inorder, 0, inorder.size()-1);
+        return root;
+
     }
     public static void main(String[] args) {
         int values[]={5,2,3,4,1,7};
@@ -189,20 +223,27 @@ public class BinarySearchTrees {
         }
         Inorder(root);
         System.out.println();
-        // System.out.println(search(root, 2));
-        // delNode(root, 2);
-        // System.out.println(search(root, 2));
-        // Inorder(root);
-        // System.out.println();
-        // ArrayList<Integer> path = new ArrayList<>();
-        // PrintRoot2leaf(root, path);
-        // Node min= Inordersuccessor(root);
-        // Node max = Inorderpredecessor(root);
-        // System.out.println(ValidateBST(root, min, max));
-        Inorder(root);
-        System.out.println();
-        Mirror(root);
-        System.out.println();
-        Inorder(root);
+    //     // System.out.println(search(root, 2));
+    //     // delNode(root, 2);
+    //     // System.out.println(search(root, 2));
+    //     // Inorder(root);
+    //     // System.out.println();
+    //     // ArrayList<Integer> path = new ArrayList<>();
+    //     // PrintRoot2leaf(root, path);
+    //     // Node min= Inordersuccessor(root);
+    //     // Node max = Inorderpredecessor(root);
+    //     // System.out.println(ValidateBST(root, min, max));
+    //     Inorder(root);
+    //     System.out.println();
+    //     Mirror(root);
+    //     System.out.println();
+    //     Inorder(root);
+    //     System.out.println();
+    //     int arr[]={1,2,3,4,5,6,7,8,9,10};
+    //     Node t=CreateBST(arr, 0, arr.length-1);
+    //     Inorder(t);
+    //     System.out.println();
+    //     Mirror(t);
+    //     Inorder(t);
     }
 }
